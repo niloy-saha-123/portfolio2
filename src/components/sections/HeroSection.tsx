@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Github, Linkedin, Facebook, Instagram, Twitter, Download } from 'lucide-react';
 import Image from 'next/image';
 import { useTheme } from '@/context/ThemeContext';
@@ -48,15 +48,12 @@ const socialLinks: SocialLink[] = [
 ];
 
 const HeroSection: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
   const [currentRole, setCurrentRole] = useState(0);
   const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const { theme } = useTheme();
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(false);
 
   useEffect(() => {
     const role = roles[currentRole];
@@ -81,8 +78,28 @@ const HeroSection: React.FC = () => {
     return () => clearTimeout(timeoutId);
   }, [currentRole, displayText, isDeleting]);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.5 }
+    );
+
+    if (heroRef.current) {
+      observer.observe(heroRef.current);
+    }
+
+    return () => {
+      if (heroRef.current) {
+        observer.unobserve(heroRef.current);
+      }
+    };
+  }, []);
+
   return (
     <section
+      ref={heroRef}
       className={`relative min-h-screen overflow-hidden ${
         theme === 'dark' ? 'bg-[#0B1121]' : 'bg-gray-50'
       } flex items-center transition-colors duration-300`}
@@ -92,7 +109,7 @@ const HeroSection: React.FC = () => {
           {/* Left Section */}
           <div
             className={`space-y-2 transform transition-all duration-1000 ${
-              isVisible ? 'translate-x-2 opacity-100' : '-translate-x-full opacity-0'
+              isInView ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'
             }`}
           >
             <div className="space-y-1">
@@ -167,7 +184,7 @@ const HeroSection: React.FC = () => {
           {/* Right Section */}
           <div
             className={`relative transform transition-all duration-1000 delay-300 ${
-              isVisible ? 'translate-x-2 opacity-100' : 'translate-x-full opacity-0'
+              isInView ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
             }`}
           >
             <div className="relative w-[480px] h-[480px] mx-auto">

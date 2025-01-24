@@ -17,7 +17,7 @@ const AboutSection = () => {
   const hiddenClass = "translate-y-32 opacity-0";
 
   return (
-    <section id="about" ref={ref} className="section-padding bg-[var(--about-bg)] transition-colors duration-300 overflow-hidden">
+    <section id="about" ref={ref} className="section-padding bg-[var(--about-bg)] transition-colors duration-300 overflow-hidden pt-20 pb-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className={`relative ${baseTransitionClass} ${inView ? visibleClass : hiddenClass}`}>
