@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
+const nextConfig = {
   output: 'export',
   images: { unoptimized: true },
-  basePath: process.env.NODE_ENV === 'production' ? '/portfolio2' : ''
+  basePath: '/portfolio2',
+  assetPrefix: '/portfolio2/'
 }
+module.exports = nextConfig
