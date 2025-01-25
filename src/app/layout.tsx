@@ -1,8 +1,8 @@
 'use client';
 
-import { ThemeProvider } from '@/context/ThemeContext'
-import Header from '@/components/layout/Header'
-import './globals.css'
+import { ThemeProvider } from '@/context/ThemeContext';
+import Header from '@/components/layout/Header';
+import './globals.css';
 
 export default function RootLayout({
   children,
@@ -11,12 +11,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth overflow-x-hidden">
-      <body className="bg-white dark:bg-[#0B1121] antialiased overflow-x-hidden">
+      <body className="antialiased overflow-x-hidden bg-gray-50 dark:bg-[#0B1121] transition-colors duration-300">
         <ThemeProvider>
           <Header />
-          <main>
-            {children}
-          </main>
+          <main>{children}</main>
         </ThemeProvider>
       </body>
     </html>

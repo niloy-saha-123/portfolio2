@@ -105,7 +105,8 @@ const Header = () => {
         </div>
       )}
 
-      <div className="h-16 bg-gray-50 dark:bg-[#0B1121]" />
+        <div className={`h-16 ${theme === 'dark' ? 'bg-[#0B1121]' : 'bg-gray-50'} transition-colors duration-300`} />
+
     </>
   );
 };
