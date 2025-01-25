@@ -14,6 +14,14 @@ const AboutSection = () => {
     threshold: 0.1,
   });
 
+  <Image
+  src={`${basePath}/images/Me.png`}
+  alt="About Me"
+  fill
+  className="object-cover object-center scale-125"
+  priority
+/>
+
   const baseTransitionClass = "transition-all duration-700";
   const visibleClass = "translate-y-0 opacity-100";
   const hiddenClass = "translate-y-32 opacity-0";
