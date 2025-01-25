@@ -5,6 +5,8 @@ import Image from 'next/image';
 import { useTheme } from '@/context/ThemeContext';
 import { useInView } from 'react-intersection-observer';
 
+const basePath = process.env.NODE_ENV === 'production' ? '/portfolio2' : '';
+
 const AboutSection = () => {
   const { theme } = useTheme();
   const [ref, inView] = useInView({
@@ -25,7 +27,7 @@ const AboutSection = () => {
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-blue-500/20 to-purple-500/20 animate-pulse" />
               <div className={`absolute inset-4 rounded-2xl ${theme === 'dark' ? 'bg-gray-800' : 'bg-[#f0f4ff]'} shadow-xl overflow-hidden transition-colors duration-300`}>
                 <Image
-                  src="/images/Me.png"
+                  src={`${basePath}/images/Me.png`}
                   alt="About Me"
                   fill
                   className="object-cover object-center scale-125"

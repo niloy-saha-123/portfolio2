@@ -1,10 +1,9 @@
 'use client';
 import { useInView } from 'react-intersection-observer';
-import { useTheme } from '@/context/ThemeContext';
 import { GraduationCap, School } from 'lucide-react';
 
 const EducationSection = () => {
-  const { theme } = useTheme();
+  
   const [ref, inView] = useInView({
     triggerOnce: false,
     threshold: 0.2

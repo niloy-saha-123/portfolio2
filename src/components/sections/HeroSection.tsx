@@ -5,6 +5,8 @@ import { Github, Linkedin, Facebook, Instagram, Twitter, Download } from 'lucide
 import Image from 'next/image';
 import { useTheme } from '@/context/ThemeContext';
 
+const basePath = process.env.NODE_ENV === 'production' ? '/portfolio2' : '';
+
 interface SocialLink {
   name: string;
   icon: React.ComponentType<{ size?: number }>;
@@ -80,21 +82,15 @@ const HeroSection: React.FC = () => {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsInView(entry.isIntersecting);
-      },
+      ([entry]) => setIsInView(entry.isIntersecting),
       { threshold: 0.5 }
     );
-
-    if (heroRef.current) {
-      observer.observe(heroRef.current);
+  
+    const currentRef = heroRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+      return () => observer.unobserve(currentRef);
     }
-
-    return () => {
-      if (heroRef.current) {
-        observer.unobserve(heroRef.current);
-      }
-    };
   }, []);
 
   return (
@@ -166,7 +162,7 @@ const HeroSection: React.FC = () => {
 
             <div className="pt-6">
               <a
-                href="/Resume.pdf"
+                href={`${basePath}/Resume.pdf`}
                 download="Niloy_Saha_Resume.pdf"
                 className={`inline-flex items-center space-x-2 px-5 py-3 ${
                   theme === 'dark' ? 'bg-blue-500 hover:bg-blue-600' : 'bg-blue-600 hover:bg-blue-700'
@@ -191,7 +187,7 @@ const HeroSection: React.FC = () => {
                 } shadow-lg overflow-hidden transition-colors duration-300`}
               >
                 <Image
-                  src="/images/Subject.png"
+                  src={`${basePath}/images/Subject.png`}
                   alt="Niloy Saha"
                   fill
                   className="object-cover object-top rounded-full p-1"
