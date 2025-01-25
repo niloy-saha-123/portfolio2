@@ -3,15 +3,14 @@ const nextConfig = {
   output: 'export',
   images: { 
     unoptimized: true,
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**',
-      },
-    ],
+    remotePatterns: [{
+      protocol: 'https',
+      hostname: '**'
+    }]
   },
-  basePath: '/portfolio2',
-  assetPrefix: '/portfolio2'
-}
-
-module.exports = nextConfig
+  basePath: process.env.NODE_ENV === 'production' ? '/portfolio2' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/portfolio2' : '',
+  trailingSlash: true,
+ }
+ 
+ module.exports = nextConfig

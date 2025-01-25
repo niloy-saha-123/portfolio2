@@ -14,13 +14,7 @@ const AboutSection = () => {
     threshold: 0.1,
   });
 
-<Image
-  src="/portfolio2/images/Me.png"
-  alt="About Me"
-  fill
-  className="object-cover object-center scale-125"
-  priority
-/>
+
 
   const baseTransitionClass = "transition-all duration-700";
   const visibleClass = "translate-y-0 opacity-100";
@@ -35,7 +29,7 @@ const AboutSection = () => {
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-blue-500/20 to-purple-500/20 animate-pulse" />
               <div className={`absolute inset-4 rounded-2xl ${theme === 'dark' ? 'bg-gray-800' : 'bg-[#f0f4ff]'} shadow-xl overflow-hidden transition-colors duration-300`}>
                 <Image
-                  src={`${basePath}/images/Me.png`}
+                  src={`${basePath}/Images/Me.png`}
                   alt="About Me"
                   fill
                   className="object-cover object-center scale-125"

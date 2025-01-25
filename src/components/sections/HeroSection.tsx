@@ -14,13 +14,8 @@ interface SocialLink {
   color: string;
 }
 
-<Image
-  src="/portfolio2/images/Subject.png"
-  alt="Niloy Saha"
-  fill
-  className="object-cover object-top rounded-full p-1"
-  priority
-/>
+
+
 const roles = ["Frontend Developer", "Full Stack Developer", "Data Analyst"];
 
 const socialLinks: SocialLink[] = [
@@ -194,7 +189,7 @@ const HeroSection: React.FC = () => {
                 } shadow-lg overflow-hidden transition-colors duration-300`}
               >
                 <Image
-                  src={`${basePath}/images/Subject.png`}
+                  src={`${basePath}/Images/Subject.png`}
                   alt="Niloy Saha"
                   fill
                   className="object-cover object-top rounded-full p-1"
