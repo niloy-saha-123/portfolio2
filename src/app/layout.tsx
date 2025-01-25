@@ -10,8 +10,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className="bg-white dark:bg-[#0B1121] antialiased">
+    <html lang="en" className="scroll-smooth overflow-x-hidden">
+      <body className="bg-white dark:bg-[#0B1121] antialiased overflow-x-hidden">
         <ThemeProvider>
           <Header />
           <main>

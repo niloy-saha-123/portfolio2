@@ -106,7 +106,6 @@ const HeroSection: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center px-6">
-          {/* Left Section */}
           <div
             className={`space-y-2 transform transition-all duration-1000 ${
               isInView ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'
@@ -148,7 +147,6 @@ const HeroSection: React.FC = () => {
               </div>
             </div>
 
-            {/* Social Links */}
             <div className="flex space-x-6 pt-2">
               {socialLinks.map((social, index) => {
                 const Icon = social.icon;
@@ -166,10 +164,9 @@ const HeroSection: React.FC = () => {
               })}
             </div>
 
-            {/* Resume Button */}
             <div className="pt-6">
               <a
-                href="/resume.pdf"
+                href="/Resume.pdf"
                 download="Niloy_Saha_Resume.pdf"
                 className={`inline-flex items-center space-x-2 px-5 py-3 ${
                   theme === 'dark' ? 'bg-blue-500 hover:bg-blue-600' : 'bg-blue-600 hover:bg-blue-700'
@@ -181,13 +178,12 @@ const HeroSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Section */}
           <div
             className={`relative transform transition-all duration-1000 delay-300 ${
               isInView ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
             }`}
           >
-            <div className="relative w-[480px] h-[480px] mx-auto">
+            <div className="relative w-full max-w-[480px] lg:w-[480px] h-[480px] mx-auto">
               <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-500/20 to-purple-500/20 animate-pulse" />
               <div
                 className={`absolute inset-6 rounded-full ${

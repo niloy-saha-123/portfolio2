@@ -82,7 +82,7 @@ const Header = () => {
       </header>
 
       {isOpen && (
-        <div className="fixed top-16 left-0 right-0 z-[99] bg-[var(--header-bg)]">
+        <div className="fixed top-16 left-0 right-0 z-[99] bg-[var(--header-bg)] max-w-screen">
           <div className="py-4 border-t border-[var(--border-color)]">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex flex-col space-y-2">
@@ -105,7 +105,7 @@ const Header = () => {
         </div>
       )}
 
-      <div className="h-16" />
+      <div className="h-16 bg-gray-50 dark:bg-[#0B1121]" />
     </>
   );
 };
