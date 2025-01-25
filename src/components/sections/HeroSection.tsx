@@ -15,7 +15,7 @@ interface SocialLink {
 }
 
 <Image
-  src={`${basePath}/images/Subject.png`}
+  src="/portfolio2/images/Subject.png"
   alt="Niloy Saha"
   fill
   className="object-cover object-top rounded-full p-1"

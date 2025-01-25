@@ -14,8 +14,8 @@ const AboutSection = () => {
     threshold: 0.1,
   });
 
-  <Image
-  src={`${basePath}/images/Me.png`}
+<Image
+  src="/portfolio2/images/Me.png"
   alt="About Me"
   fill
   className="object-cover object-center scale-125"
