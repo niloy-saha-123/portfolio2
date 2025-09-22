@@ -1,10 +1,41 @@
 'use client';
 
 import React from 'react';
-import { ExternalLink, Github, Bot, Brain } from 'lucide-react';
+import { ExternalLink, Github, Bot, Brain, ShoppingCart, Monitor } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 
 const projects = [
+  {
+    title: "Rental - Full-Stack Peer-to-Peer Rental Marketplace",
+    period: "June 2025 – Present",
+    description: [
+      "Architecting and developing a full-stack, type-safe web application for a peer-to-peer equipment rental marketplace, deployed on Vercel.",
+      "Designing a scalable relational database schema with Prisma ORM and managing migrations for a PostgreSQL database hosted on Supabase.",
+      "Implementing a secure and robust authentication system using Auth.js (NextAuth.js), enabling both credential-based and OAuth social logins.",
+      "Building an end-to-end type-safe API layer using tRPC, ensuring seamless and error-free data communication between the frontend and server.",
+      "Developing a modular frontend with React and Next.js App Router, creating reusable and feature-specific components with Tailwind CSS for styling.",
+      "Collaborating within a team environment using a professional Git feature-branch workflow, conducting code reviews through pull requests to maintain code quality."
+    ],
+    technologies: ["Next.js", "React", "TypeScript", "tRPC", "PostgreSQL", "Prisma", "Supabase", "Auth.js", "Tailwind CSS"],
+    github: "https://github.com/niloy-saha-123/Rental",
+    icon: ShoppingCart,
+    color: { light: '#10b981', dark: '#34d399' }
+  },
+  {
+    title: "WatchNext - Full-Stack Media Tracker",
+    period: "Aug. 2025 – Present",
+    description: [
+      "Designing and building a decoupled, full-stack web application to track watched movies and TV shows.",
+      "Architecting a secure REST API with Node.js and Express for user authentication, data management, and integration with the TMDB API.",
+      "Implementing JWT-based authentication for secure user sessions and data access control.",
+      "Creating a responsive frontend with React and Tailwind CSS for optimal user experience across devices.",
+      "Integrating with The Movie Database (TMDB) API to provide comprehensive movie and TV show information and metadata."
+    ],
+    technologies: ["React", "Node.js", "Express.js", "MongoDB", "Tailwind CSS", "JWT"],
+    github: "https://github.com/niloy-saha-123/WatchNext",
+    icon: Monitor,
+    color: { light: '#f59e0b', dark: '#fbbf24' }
+  },
   {
     title: "StudyBuddy - AI-Powered Learning Platform",
     period: "Dec. 2023 – Present",
