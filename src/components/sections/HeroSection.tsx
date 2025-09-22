@@ -57,7 +57,6 @@ const HeroSection: React.FC = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const { theme } = useTheme();
   const heroRef = useRef<HTMLDivElement>(null);
-  const [isInView, setIsInView] = useState(false);
 
   useEffect(() => {
     const role = roles[currentRole];
@@ -82,18 +81,6 @@ const HeroSection: React.FC = () => {
     return () => clearTimeout(timeoutId);
   }, [currentRole, displayText, isDeleting]);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsInView(entry.isIntersecting),
-      { threshold: 0.5 }
-    );
-  
-    const currentRef = heroRef.current;
-    if (currentRef) {
-      observer.observe(currentRef);
-      return () => observer.unobserve(currentRef);
-    }
-  }, []);
 
   return (
     <section
@@ -104,11 +91,7 @@ const HeroSection: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center px-6">
-          <div
-            className={`space-y-2 transform transition-all duration-1000 ${
-              isInView ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'
-            }`}
-          >
+          <div className="space-y-2">
             <div className="space-y-1">
               <h2
                 className={`text-5xl ${
@@ -154,7 +137,7 @@ const HeroSection: React.FC = () => {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'} transition-all duration-300 transform hover:-translate-y-1 ${social.color}`}
+                    className={`${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'} ${social.color}`}
                   >
                     <Icon size={36} />
                   </a>
@@ -176,13 +159,9 @@ const HeroSection: React.FC = () => {
             </div>
           </div>
 
-          <div
-            className={`relative transform transition-all duration-1000 delay-300 ${
-              isInView ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
-            }`}
-          >
+          <div className="relative">
             <div className="relative w-full max-w-[480px] lg:w-[480px] h-[480px] mx-auto">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-500/20 to-purple-500/20 animate-pulse" />
+              <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-blue-500/20 to-purple-500/20" />
               <div
                 className={`absolute inset-6 rounded-full ${
                   theme === 'dark' ? 'bg-gray-800' : 'bg-[#f0f4ff]'

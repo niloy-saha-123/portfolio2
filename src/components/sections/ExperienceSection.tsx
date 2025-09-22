@@ -1,11 +1,21 @@
 'use client';
 
-import { Building2, Briefcase } from 'lucide-react';
-import { useInView } from 'react-intersection-observer';
+import { Building2, Briefcase, Code } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
-import { motion } from 'framer-motion';
 
 const experiences = [
+  {
+    title: "Software Engineer Intern",
+    company: "FarmData2",
+    location: "Carlisle, Pennsylvania, United States",
+    period: "May 2025 – Jul. 2025",
+    description: [
+      "Developed and refactored a suite of 10+ core UI components using Vue.js and BootstrapVueNext, resolving critical bugs that improved front-end stability and streamlined user workflows.",
+      "Engineered a multi-pass logging system that automates the generation of 3+ new farm logs for each user submission, directly enhancing data fidelity for farm staff and USDA certification requirements.",
+      "Authored and maintained 15+ Cypress test files, covering both end-to-end and component testing, to guarantee a robust quality assurance pipeline and 75%+ test coverage.",
+      "Streamlined developer workflows and enhanced code quality by implementing Git pre-commit hooks that enforced linting rules, preventing the introduction of debug-only code and fostering a more collaborative environment."
+    ]
+  },
   {
     title: "Software Development Intern",
     company: "Development Initiative for Social Awareness (DISA)", 
@@ -30,57 +40,27 @@ const experiences = [
 
 const ExperienceSection = () => {
   const { theme } = useTheme();
-  const [ref, inView] = useInView({
-    triggerOnce: false,
-    threshold: 0.1
-  });
 
   return (
     <section
       id="experience"
-      ref={ref}
       className="py-28 px-6 lg:px-12 bg-[var(--about-bg)] transition-colors overflow-hidden"
     >
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-center">
-          <motion.h2
-            initial={{ opacity: 0, y: -50, scale: 0.8 }}
-            animate={inView ? { 
-              opacity: 1, 
-              y: 0,
-              scale: 1,
-              transition: {
-                type: "spring",
-                stiffness: 120,
-                damping: 10
-              }
-            } : {}}
-            transition={{ duration: 1.5 }}
-            className="text-6xl font-bold mb-[6rem]"
-          >
+          <h2 className="text-6xl font-bold mb-[6rem]">
             <span className="dark:text-purple-400 text-black transition-colors duration-300">
               Work Experience
             </span>
-          </motion.h2>
+          </h2>
         </div>
 
         <div className="relative">
           <div className="absolute left-1/2 top-4 bottom-4 h-[calc(100%-4rem)] w-0.5 bg-gradient-to-b from-blue-500 to-purple-500 transform -translate-x-1/2" />
           
           {experiences.map((exp, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, x: index % 2 === 0 ? 200 : -200, scale: 0.95 }}
-              animate={inView ? { 
-                opacity: 1, 
-                x: 0,
-                scale: 1,
-                transition: {
-                  type: "spring",
-                  stiffness: 100,
-                  delay: index * 0.3
-                }
-              } : {}}
               className={`relative flex flex-col md:flex-row gap-8 mb-0 ${
                 index % 2 === 0 ? 'md:flex-row-reverse' : ''
               }`}
@@ -88,6 +68,8 @@ const ExperienceSection = () => {
               <div className="absolute z-10 left-1/2 w-8 h-8 transform -translate-x-1/2 overflow-hidden">
                 <div className="w-full h-full bg-gradient-to-tr from-blue-500 to-purple-500 rounded-full flex items-center justify-center shadow-glow-blue">
                   {index === 0 ? (
+                    <Code className="w-4 h-4 text-white" />
+                  ) : index === 1 ? (
                     <Building2 className="w-4 h-4 text-white" />
                   ) : (
                     <Briefcase className="w-4 h-4 text-white" />
@@ -112,12 +94,9 @@ const ExperienceSection = () => {
                   </div>
                   <ul className="space-y-3">
                     {exp.description.map((item, i) => (
-                      <motion.li 
+                      <li 
                         key={i}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={inView ? { opacity: 1, x: 0 } : {}}
-                        transition={{ duration: 0.4, delay: i * 0.1 + 0.4 }}
-                        className="flex items-start group transition-transform duration-300 hover:translate-x-2"
+                        className="flex items-start group"
                       >
                         <span className="flex-shrink-0 w-1.5 h-1.5 mt-2 rounded-full bg-blue-500 mr-3 group-hover:scale-125 transition-transform duration-300" />
                         <span className={`${
@@ -125,12 +104,12 @@ const ExperienceSection = () => {
                         } transition-all duration-300 group-hover:[text-shadow:_0_0_6px_#93c5fd] dark:group-hover:[text-shadow:_0_0_8px_#3b82f6]`}>
                           {item}
                         </span>
-                      </motion.li>
+                      </li>
                     ))}
                   </ul>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Send } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
+import emailjs from '@emailjs/browser';
 
 interface FormData {
   name: string;
@@ -27,26 +28,35 @@ const ContactSection = () => {
     setSubmitStatus('idle');
 
     try {
-      const response = await fetch('https://formspree.io/f/mqaeadgd', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          message: formData.message
-        }),
-      });
+      // EmailJS configuration
+      const serviceId = 'service_2r8ni7b';
+      const templateId = 'template_ssw1wc8';
+      const publicKey = 'OZ4FY3xynmHsfpSnk';
 
-      if (response.ok) {
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', message: '' });
-      } else {
-        throw new Error('Failed to send message');
-      }
+      const templateParams = {
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+        // Alternative variable names that might be expected
+        from_name: formData.name,
+        from_email: formData.email,
+        user_message: formData.message,
+      };
+
+      // Initialize EmailJS with public key
+      emailjs.init(publicKey);
+      
+      console.log('Sending email with params:', templateParams);
+      
+      // Send email
+      const result = await emailjs.send(serviceId, templateId, templateParams);
+      
+      console.log('Email sent successfully:', result);
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', message: '' });
     } catch (error) {
       console.error('Error submitting form:', error);
+      console.error('Error details:', JSON.stringify(error, null, 2));
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);

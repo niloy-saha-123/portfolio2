@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { ExternalLink, Github, Bot, Brain } from 'lucide-react';
-import { motion } from 'framer-motion';
 import { useTheme } from '@/context/ThemeContext';
 
 const projects = [
@@ -38,24 +37,18 @@ const ProjectsSection: React.FC = () => {
   return (
     <section id="projects" className={`py-24 ${theme === 'dark' ? 'bg-gray-900' : 'bg-gray-50'}`}>
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+        <h2
           className={`text-4xl md:text-5xl font-bold ${
             theme === 'dark' ? 'text-white' : 'text-gray-900'
           } mb-16 text-center`}
         >
           Featured Projects
-        </motion.h2>
+        </h2>
 
         <div className="space-y-8">
           {projects.map((project, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
               className={`group relative ${
                 theme === 'dark' 
                   ? 'bg-gray-800 border-gray-700 hover:shadow-[0_4px_24px_rgba(255,255,255,0.1)]' 
@@ -165,7 +158,7 @@ const ProjectsSection: React.FC = () => {
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

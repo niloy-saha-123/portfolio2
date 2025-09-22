@@ -1,46 +1,53 @@
 'use client';
 
 import React from 'react';
-import { Code2, Wrench, Library } from 'lucide-react';
-import { useInView } from 'react-intersection-observer';
+import { Code2, Wrench, Library, Database, TestTube } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
-import { motion } from 'framer-motion';
 
 const skillCategories = [
   {
-    title: "Languages",
+    title: "Languages & Core Technologies",
     icon: Code2,
-    skills: ["Java", "Python", "C", "JavaScript", "TypeScript", "HTML/CSS", "R"],
+    skills: ["Java", "Python", "TypeScript", "JavaScript", "C", "R", "HTML5", "CSS"],
     color: "blue",
     glow: "#3b82f6"
   },
   {
-    title: "Developer Tools",
+    title: "Frameworks & Libraries",
+    icon: Library,
+    skills: ["React", "Next.js", "Vue.js", "Node.js", "Express.js", "Tailwind CSS", "Bootstrap", "NumPy", "Pandas", "Matplotlib"],
+    color: "cyan",
+    glow: "#00f0ff"
+  },
+  {
+    title: "Database & Backend",
+    icon: Database,
+    skills: ["MongoDB", "MySQL", "Supabase", "Clerk", "JSON Web Tokens", "AWS Lambda"],
+    color: "green",
+    glow: "#10b981"
+  },
+  {
+    title: "Development & Deployment Tools",
     icon: Wrench,
-    skills: ["Git", "Visual Studio", "Supabase", "Clerk", "PyCharm", "Docker", "Eclipse", "JUnit", "Command Line"],
+    skills: ["Git", "Docker", "Vite", "Vercel", "Render", "VS Code", "PyCharm", "Eclipse"],
     color: "purple",
     glow: "#8b5cf6"
   },
   {
-    title: "Libraries & Frameworks",
-    icon: Library,
-    skills: ["React", "Tailwind CSS", "Next.js", "NumPy", "Matplotlib", "Pandas"],
-    color: "cyan",
-    glow: "#00f0ff"
+    title: "Testing",
+    icon: TestTube,
+    skills: ["Cypress", "Selenium", "JUnit5", "Pytest"],
+    color: "orange",
+    glow: "#f97316"
   },
 ];
 
 const SkillsSection = () => {
   const { theme } = useTheme();
-  const [ref, inView] = useInView({
-    triggerOnce: false,
-    threshold: 0.1,
-  });
 
   return (
     <section
       id="skills"
-      ref={ref}
       className="py-28 px-6 lg:px-12 bg-[var(--background)] transition-colors duration-300"
     >
       <style jsx>{`
@@ -50,24 +57,18 @@ const SkillsSection = () => {
       `}</style>
       
       <div className="max-w-7xl mx-auto">
-        <motion.h2
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6 }}
+        <h2
           className={`text-4xl md:text-5xl font-bold ${
             theme === 'dark' ? 'text-white' : 'text-gray-900'
           } mb-12`}
         >
           Skills & Technologies
-        </motion.h2>
+        </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
           {skillCategories.map((category, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0 }}
-              animate={inView ? { opacity: 1 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
               className={`group relative ${
                 theme === 'dark' ? 'bg-gray-800/50' : 'bg-white'
               } rounded-2xl p-5 transition-all duration-300 border ${
@@ -80,12 +81,20 @@ const SkillsSection = () => {
                     className={`p-2 ${
                       category.color === 'cyan' 
                         ? 'bg-cyan-500/10 dark:bg-cyan-500/20' 
+                        : category.color === 'green'
+                        ? 'bg-green-500/10 dark:bg-green-500/20'
+                        : category.color === 'orange'
+                        ? 'bg-orange-500/10 dark:bg-orange-500/20'
                         : `bg-${category.color}-500/10 dark:bg-${category.color}-500/20`
                     } rounded-lg`}
                   >
                     <category.icon className={`w-5 h-5 ${
                       category.color === 'cyan' 
                         ? 'text-cyan-500' 
+                        : category.color === 'green'
+                        ? 'text-green-500'
+                        : category.color === 'orange'
+                        ? 'text-orange-500'
                         : `text-${category.color}-500`
                     }`} />
                   </div>
@@ -119,7 +128,7 @@ const SkillsSection = () => {
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
